@@ -20,10 +20,7 @@
                 <xsl:call-template name="stk:pagination.create-header">
                     <xsl:with-param name="contents" select="/result/events/contents"/>
                 </xsl:call-template>
-                <xsl:call-template name="stk:pagination.create-menu">
-                    <xsl:with-param name="contents" select="/result/events/contents"/>
-                </xsl:call-template>
-                <ol>                    
+                <ol id="event-list">                    
                     <xsl:apply-templates select="/result/events/contents/content"/>
                 </ol>
                 <xsl:call-template name="stk:pagination.create-menu">
@@ -31,8 +28,8 @@
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-                <p class="clear">
-                    <xsl:value-of select="portal:localize('No-events')"/>
+                <p>
+                    <xsl:value-of select="portal:localize('event.no-events')"/>
                 </p>
             </xsl:otherwise>
         </xsl:choose>
@@ -43,13 +40,7 @@
         <xsl:variable name="start-time" select="contentdata/start-time"/>
         <xsl:variable name="end-date" select="contentdata/end-date"/>
         <xsl:variable name="end-time" select="contentdata/end-time"/>
-        <div class="item">
-            <xsl:if test="position() = 1">
-                <xsl:attribute name="class">item first</xsl:attribute>
-            </xsl:if>
-            <xsl:if test="position() = last()">
-                <xsl:attribute name="class">item last</xsl:attribute>
-            </xsl:if>
+        <li>
             <a href="{portal:createContentUrl(@key)}" title="{title}" class="date">
                 <span class="day">
                     <xsl:value-of select="day-from-date(xs:date($start-date))"/>
@@ -63,34 +54,36 @@
                     <xsl:value-of select="contentdata/heading"/>
                 </a>
             </h2>
-            <p>
-                <strong>
-                    <xsl:value-of select="concat(portal:localize('When'), ': ')"/>
-                </strong>
+            <div class="time">
+                <span>
+                    <xsl:value-of select="concat(portal:localize('event.when'), ': ')"/>
+                </span>
                 <xsl:variable name="date">
                     <xsl:value-of select="$start-date"/>
-                    <xsl:if test="$start-time != ''">
+                    <xsl:if test="normalize-space($start-time)">
                         <xsl:value-of select="concat(' ', $start-time)"/>
                     </xsl:if>
                 </xsl:variable>
                 <xsl:value-of select="stk:time.format-date($date, $stk:language, (), true())"/>
-                <xsl:if test="$end-date &gt; $start-date or $end-time != ''">
+                <xsl:if test="$end-date gt $start-date or $end-time != ''">
                     <xsl:text> -</xsl:text>
-                    <xsl:if test="$end-date &gt; $start-date">
+                    <xsl:if test="$end-date gt $start-date">
                         <xsl:value-of select="concat(' ', stk:time.format-date($end-date, $stk:language, (), ()))"/>
                     </xsl:if>
                     <xsl:if test="$end-time != ''">
                         <xsl:value-of select="concat(' ', stk:time.format-time($end-time, $stk:language))"/>
                     </xsl:if>
-                </xsl:if>
-                <xsl:if test="contentdata/location != ''">
-                    <strong>
-                        <xsl:value-of select="concat(' ', portal:localize('Where'), ': ')"/>
-                    </strong>
+                </xsl:if>                
+            </div>
+            <xsl:if test="normalize-space(contentdata/location)">
+                <div class="location">
+                    <span>                        
+                        <xsl:value-of select="concat(' ', portal:localize('event.where'), ': ')"/> 
+                    </span>                   
                     <xsl:value-of select="contentdata/location"/>
-                </xsl:if>
-            </p>
-        </div>
+                </div>
+            </xsl:if>
+        </li>
     </xsl:template>
     
 </xsl:stylesheet>

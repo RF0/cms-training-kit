@@ -8,7 +8,8 @@
   
   <xsl:import href="/modules/library-stk/stk-variables.xsl"/>  
   <xsl:import href="/modules/library-stk/html.xsl"/> 
-  <xsl:import href="/modules/library-stk/image.xsl"/> 
+  <xsl:import href="/modules/library-stk/image.xsl"/>   
+  <xsl:import href="/modules/library-stk/text.xsl"/> 
   <xsl:import href="/modules/library-stk/time.xsl"/>     
   
   <xsl:output method="xhtml"/>
@@ -35,14 +36,18 @@
       <xsl:call-template name="stk:image.create">
         <xsl:with-param name="image" select="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
         <xsl:with-param name="size" select="if ($stk:device-class = 'mobile') then 'full' else 'list'"/>
+        <xsl:with-param name="class" select="'intro-image'"/>
       </xsl:call-template>
       
-      <xsl:if test="contentdata/preface">
-        <p class="preface">
-          <span class="byline">
-            <xsl:value-of select="stk:time.format-date(@publishfrom, /result/context/@languagecode, 'short', true())"/>
-          </span>
-          <xsl:value-of disable-output-escaping="yes" select="replace(contentdata/preface, '\n', '&lt;br /&gt;')"/>
+      <div class="byline">
+        <xsl:value-of select="stk:time.format-date(@publishfrom, $stk:language, 'short', true())"/>
+      </div>
+      
+      <xsl:if test="normalize-space(contentdata/preface)">
+        <p class="preface">          
+          <xsl:call-template name="stk:text.process">
+            <xsl:with-param name="text" select="contentdata/preface"/>
+          </xsl:call-template>
         </p>
       </xsl:if>
       <xsl:call-template name="stk:html.process">

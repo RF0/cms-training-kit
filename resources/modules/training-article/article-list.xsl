@@ -20,11 +20,8 @@
         <xsl:call-template name="stk:pagination.create-header">
           <xsl:with-param name="contents" select="/result/articles/contents"/>
         </xsl:call-template>
-        <xsl:call-template name="stk:pagination.create-menu">
-          <xsl:with-param name="contents" select="/result/articles/contents"/>
-        </xsl:call-template>
         <xsl:if test="/result/articles/contents/content">
-          <ol>
+          <ol id="article-list">
             <xsl:apply-templates select="/result/articles/contents/content"/>
           </ol>
         </xsl:if>
@@ -57,12 +54,15 @@
           <xsl:with-param name="size" select="'wide'"/>
         </xsl:call-template>
       </xsl:if>
-      <p>
-        <span class="byline">
-          <xsl:value-of select="stk:time.format-date(@publishfrom, /result/context/@languagecode, 'short', true())"/>
-        </span>
-        <xsl:value-of select="stk:text.crop(contentdata/preface, xs:integer(floor($stk:region-width * 0.5)))"/>
-      </p>
+      <div class="byline">
+        <xsl:value-of select="stk:time.format-date(@publishfrom, $stk:language, 'short', true())"/>
+      </div>
+      <xsl:if test="normalize-space(contentdata/preface)">
+        <div class="preface">
+          <xsl:value-of select="contentdata/preface"/>
+        </div>
+      </xsl:if>
+      
       <a href="{portal:createContentUrl(@key,())}" title="{title}">
         <xsl:value-of select="portal:localize('article.read-more')"/>
       </a>
