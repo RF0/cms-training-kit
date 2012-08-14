@@ -8,7 +8,8 @@
     <xsl:import href="/modules/library-stk/stk-variables.xsl"/>
     <xsl:import href="/modules/library-stk/region.xsl"/>
     <xsl:import href="/modules/library-stk/head.xsl"/>
-    <xsl:import href="/modules/library-stk/accessibility.xsl"/>
+    <xsl:import href="/modules/library-stk/accessibility.xsl"/>    
+    <xsl:import href="/modules/library-stk/menu.xsl"/>
     <xsl:import href="/modules/library-stk/google.xsl"/>    
     <xsl:import href="/modules/library-stk/system.xsl"/>
     
@@ -61,7 +62,7 @@
         <html>
             <head>
                 <title>
-                    <xsl:value-of select="stk:menuitem-name($stk:current-resource)"/>
+                    <xsl:value-of select="stk:menu.menuitem-name($stk:current-resource)"/>
                     <xsl:value-of select="concat(' - ', $stk:site-name)"/>
                 </title>
                 <xsl:call-template name="stk:head.create-metadata"/>
@@ -76,7 +77,7 @@
                 <div id="container">
                     
                     <div id="enonic-header">
-                        <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-logo-small.png'))}" alt="Enonic Logo"/>
+                        <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-training-kit-logo-small.png'))}" alt="Enonic Logo"/>
                     </div>
                     
                     <xsl:call-template name="stk:menu.render">
@@ -108,7 +109,7 @@
         <html>
             <head>                
                 <title>
-                    <xsl:value-of select="stk:menuitem-name($stk:current-resource)"/>
+                    <xsl:value-of select="stk:menu.menuitem-name($stk:current-resource)"/>
                 </title>
                 <xsl:call-template name="stk:head.create-metadata"/>                
                 <meta content="minimum-scale=1.0, width=device-width, user-scalable=yes" name="viewport" />

@@ -48,7 +48,7 @@ p {
 #enonic-header img {
     position: absolute;
     right: 50px;
-    top: 2px;
+    top: 5px;
 }
 
 .pagination li {
@@ -92,4 +92,48 @@ article img.intro-image {
 #event-list .time span,
 #event-list .location span {
     font-weight: bold;
+}
+
+
+#weather-forecast ol {
+    overflow: hidden;
+    margin: 20px 0 40px 0;
+}
+
+#weather-forecast li {
+    width: 150px;
+    float: left;
+}
+
+#weather-forecast .time-from {
+    font-style: italic;
+}
+
+#weather-forecast .date {
+    margin-right: 5px;
+}
+
+#weather-forecast .temperature {
+    font-size: 30px;
+    text-align: center;
+}
+
+#weather-forecast .disclaimer {
+    clear: both;
+}
+
+#sitemap {
+    overflow: hidden;
+}
+
+#sitemap li {
+    float: left;
+}
+
+#sitemap > ul > li {
+    font-size: 1em;
+}
+
+#sitemap li > ul > li {
+    font-size: 0.9em;
 }
