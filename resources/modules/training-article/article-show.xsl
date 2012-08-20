@@ -33,11 +33,14 @@
         <xsl:value-of select="title"/>
       </h1>
       
-      <xsl:call-template name="stk:image.create">
-        <xsl:with-param name="image" select="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
-        <xsl:with-param name="size" select="if ($stk:device-class = 'mobile') then 'full' else 'list'"/>
-        <xsl:with-param name="class" select="'intro-image'"/>
-      </xsl:call-template>
+      <xsl:if test="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image/image/@key]">
+        <xsl:call-template name="stk:image.create">
+          <xsl:with-param name="image" select="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
+          <xsl:with-param name="size" select="if ($stk:device-class = 'mobile') then 'full' else 'list'"/>
+          <xsl:with-param name="class" select="'intro-image'"/>
+        </xsl:call-template>
+      </xsl:if>
+      
       
       <div class="byline">
         <xsl:value-of select="stk:time.format-date(@publishfrom, $stk:language, 'short', true())"/>
