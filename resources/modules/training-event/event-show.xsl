@@ -65,10 +65,14 @@
             </xsl:if>
         </p>
         
+        
+        <xsl:if test="/result/event/contents/relatedcontents/content[@key = current()/contentdata/image/image/@key]">
             <xsl:call-template name="stk:image.create">
                 <xsl:with-param name="image" select="/result/event/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
                 <xsl:with-param name="filter" select="if ($stk:device-class = 'mobile') then 'scalewidth(300)' else 'scalewidth(500)'"/>
             </xsl:call-template>
+        </xsl:if>
+           
         
         <xsl:if test="normalize-space(contentdata/preface)">
             <div class="preface">
