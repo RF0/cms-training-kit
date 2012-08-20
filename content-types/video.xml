@@ -1,0 +1,21 @@
+<contenttype>
+    <config>
+        <form>
+            <title name="title" />
+            <block name="Video">
+                <input name="title" required="true" type="text">
+                    <display>Title</display>
+                    <xpath>contentdata/title</xpath>
+                </input>
+                <input name="description" type="textarea">
+                    <display>Description</display>
+                    <xpath>contentdata/description</xpath>
+                </input>
+                <input name="video-id" required="true" type="text">
+                    <display>Video id</display>
+                    <xpath>contentdata/video-id</xpath>
+                </input>
+            </block>
+        </form>
+    </config>
+</contenttype>
