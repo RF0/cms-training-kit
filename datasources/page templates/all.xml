@@ -1,0 +1,10 @@
+<datasources>
+    <datasource>
+        <methodname>getMenu</methodname>
+        <parameters>
+            <parameter name="menuKey" type="int">${portal.siteKey}</parameter>
+            <parameter name="menuItemKey" type="int">${portal.pageKey}</parameter>
+            <parameter name="levels" type="int">0</parameter>
+        </parameters>
+    </datasource>
+</datasources>

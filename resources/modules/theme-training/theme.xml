@@ -22,11 +22,15 @@
                         <margin>
                             <right>10</right>
                         </margin>
-                    </region>
-                    <region name="center" element="section" class="">
                         <padding>
-                            <right>0</right>
-                            <left>0</left>
+                            <top>20</top>
+                            <bottom>20</bottom>
+                        </padding>
+                    </region>
+                    <region name="center" class="">
+                        <padding>
+                            <right>20</right>
+                            <left>20</left>
                             <top>20</top>
                             <bottom>20</bottom>
                         </padding>
@@ -35,6 +39,10 @@
                     </region>
                     <region name="east">
                         <width>180</width>
+                        <padding>
+                            <top>20</top>
+                            <bottom>20</bottom>
+                        </padding>
                         <margin>
                             <left>10</left>
                         </margin>
@@ -84,7 +92,8 @@
                 <style>/_public/theme-training/css/desktop.css</style>
             </styles>
             <scripts>
-                <script>/_public/theme-training/javascript/common.js</script>
+                <script>/_public/theme-training/javascript/jquery-1.8.0.min.js</script>                
+                <script>/_public/theme-training/javascript/desktop.js</script>
             </scripts>
         </device-class>
         <device-class name="mobile">
@@ -94,8 +103,17 @@
                         <region name="north">
                             <width>296</width>
                             <padding>
-                                <left>0</left>
-                                <right>0</right>
+                                <left>12</left>
+                                <right>12</right>
+                                <top>12</top>
+                                <bottom>12</bottom>
+                            </padding>
+                        </region>
+                        <region name="west">
+                            <width>296</width>
+                            <padding>
+                                <left>12</left>
+                                <right>12</right>
                                 <top>12</top>
                                 <bottom>12</bottom>
                             </padding>
@@ -103,17 +121,26 @@
                         <region name="center">
                             <width>296</width>
                             <padding>
-                                <left>0</left>
-                                <right>0</right>
-                                <top>20</top>
-                                <bottom>20</bottom>
+                                <left>12</left>
+                                <right>12</right>
+                                <top>12</top>
+                                <bottom>12</bottom>
+                            </padding>
+                        </region>
+                        <region name="east">
+                            <width>296</width>
+                            <padding>
+                                <left>12</left>
+                                <right>12</right>
+                                <top>12</top>
+                                <bottom>12</bottom>
                             </padding>
                         </region>
                         <region name="south">
                             <width>296</width>
                             <padding>
-                                <left>0</left>
-                                <right>0</right>
+                                <left>12</left>
+                                <right>12</right>
                                 <top>12</top>
                                 <bottom>12</bottom>
                             </padding>
@@ -159,8 +186,8 @@
                 <style>/_public/theme-training/css/mobile.css</style>
             </styles>
             <scripts>
-                <script>/_public/theme-training/javascript/common.js</script>
-                <script>/_public/theme-training/javascript/jquery.enonic.tree.js</script>
+                <script>/_public/theme-training/javascript/jquery-1.8.0.min.js</script>                
+                <script>/_public/theme-training/javascript/mobile.js</script>
             </scripts>
         </device-class>
     </device-classes>

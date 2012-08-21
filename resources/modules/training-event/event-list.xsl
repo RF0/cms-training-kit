@@ -41,14 +41,14 @@
         <xsl:variable name="end-date" select="contentdata/end-date"/>
         <xsl:variable name="end-time" select="contentdata/end-time"/>
         <li>
-            <a href="{portal:createContentUrl(@key)}" title="{title}" class="date">
+            <span class="date">
                 <span class="day">
                     <xsl:value-of select="day-from-date(xs:date($start-date))"/>
                 </span>
                 <span class="month">
                     <xsl:value-of select="format-date(xs:date($start-date), '[MN,*-3]', $stk:language, (), ())"/>
                 </span>
-            </a>
+            </span>
             <h2>
                 <a href="{portal:createContentUrl(@key)}">
                     <xsl:value-of select="contentdata/heading"/>

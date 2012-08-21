@@ -76,26 +76,38 @@
             <body>
                 <div id="container">
                     
-                    <div id="enonic-header">
-                        <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-training-kit-logo-small.png'))}" alt="Enonic Logo"/>
+                    <header>
+                        <div id="enonic-header">
+                            <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-training-kit-logo-small.png'))}" alt="Enonic Logo"/>
+                        </div>
+                        <xsl:call-template name="stk:menu.render">
+                            <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
+                            <xsl:with-param name="levels" select="1"/>
+                            <xsl:with-param name="list-id" select="'main-menu'"/>
+                        </xsl:call-template>
+                        <!-- Create content bypass links if defined in config -->
+                        <xsl:call-template name="stk:accessibility.create-bypass-links"/>
+                    </header>
+                    
+                    <div id="main-content">
+                        <!-- Renders all regions defined in config -->
+                        <xsl:call-template name="stk:region.render">
+                            <xsl:with-param name="layout" select="$layout" as="xs:string"/>
+                        </xsl:call-template>
+                        <xsl:if test="not(/result/context/page/regions/region/windows/node())">
+                            <div class="welcome-to-the-training-kit">                                
+                                <h1>Welcome to the Enonic Training kit. </h1>
+                                <p>This message will disappear when you add a portlet to this page.</p>
+                            </div>
+                        </xsl:if>
                     </div>
                     
-                    <xsl:call-template name="stk:menu.render">
-                        <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
-                        <xsl:with-param name="levels" select="1"/>
-                        <xsl:with-param name="list-id" select="'main-menu'"/>
-                    </xsl:call-template>
-                    <!-- Create content bypass links if defined in config -->
-                    <xsl:call-template name="stk:accessibility.create-bypass-links"/>
-                                                            
-                    <!-- Renders all regions defined in config -->
-                    <xsl:call-template name="stk:region.render">
-                        <xsl:with-param name="layout" select="$layout" as="xs:string"/>
-                    </xsl:call-template>
+                    <footer>
+                        <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'mobile', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
+                            <xsl:value-of select="portal:localize('theme-basic.change-to-mobile-version')"/>
+                        </a>
+                    </footer>
                     
-                    <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'mobile', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                        <xsl:value-of select="portal:localize('theme-basic.change-to-mobile-version')"/>
-                    </a>
                     
                 </div>
                 <xsl:call-template name="stk:google.analytics"/>
@@ -124,32 +136,35 @@
             </head>
             <body>
                 <div id="container">
-                    <!-- Create content bypass links if defined in config -->
-                    <xsl:call-template name="stk:accessibility.create-bypass-links"/>
+                    <header>
+                        <a href="#" id="toggle-main-menu">
+                            <xsl:value-of select="portal:localize('menu.toggle-menu')"/>
+                        </a>
+                        <xsl:call-template name="stk:menu.render">
+                            <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
+                            <xsl:with-param name="levels" select="1"/>
+                            <xsl:with-param name="list-id" select="'main-menu'"/>
+                        </xsl:call-template>
+                    </header>
                     
-                    <xsl:call-template name="stk:menu.render">
-                        <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
-                        <xsl:with-param name="levels" select="3"/>
-                        <xsl:with-param name="list-id" select="'main-menu'"/>
-                    </xsl:call-template>
+                    <div id="main-content">
+                        <!-- Renders all regions defined in config -->
+                        <xsl:call-template name="stk:region.render">
+                            <xsl:with-param name="layout" select="$layout" as="xs:string"/>
+                        </xsl:call-template>
+                        <xsl:if test="not(/result/context/page/regions/region/windows/node())">
+                            <div class="welcome-to-the-training-kit">                                
+                                <h1>Welcome to the Enonic Training kit. </h1>
+                                <p>This message will disappear when you add a portlet to this page.</p>
+                            </div>
+                        </xsl:if>
+                    </div>
                     
-                    <script type="text/javascript">
-                        $(function() {
-                            $('#main-menu').enonicTree();
-                        });
-                    </script>
-                                        
-                    <span class="current-device-class">Mobile version</span>
-                    <h1>My first headline</h1>
-                    
-                    <!-- Renders all regions defined in config -->
-                    <xsl:call-template name="stk:region.render">
-                        <xsl:with-param name="layout" select="$layout" as="xs:string"/>
-                    </xsl:call-template>
-                    
-                    <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'desktop', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                        <xsl:value-of select="portal:localize('theme-basic.change-to-desktop-version')"/>
-                    </a>
+                    <footer>
+                        <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'desktop', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
+                            <xsl:value-of select="portal:localize('theme-basic.change-to-desktop-version')"/>
+                        </a>
+                    </footer>
                     
                 </div>
                 <xsl:call-template name="stk:google.analytics"/>

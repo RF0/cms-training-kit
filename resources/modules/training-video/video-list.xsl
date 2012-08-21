@@ -27,7 +27,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <p>
-                    <xsl:value-of select="portal:localize('No-videos')"/>
+                    <xsl:value-of select="portal:localize('video.no-videos')"/>
                 </p>
             </xsl:otherwise>
         </xsl:choose>

@@ -44,6 +44,8 @@
                    </xsl:apply-templates>
                </ul>
            </xsl:if>
+            
+            <xsl:call-template name="javascript"/>
         </div>
     </xsl:template>
     
@@ -108,4 +110,13 @@
         </li>
     </xsl:template>
     
+    <xsl:template name="javascript">
+        <script type="text/javascript">
+            $(function() {
+                $('#file-archive .folder span').on('click', function() {
+                    $(this).closest('.folder').children('ul').slideToggle();
+                });
+            });
+        </script>
+    </xsl:template>
 </xsl:stylesheet>

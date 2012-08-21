@@ -1,6 +1,41 @@
 @import url('all-devices.css');
 
 #container {
-    width: 300px;
-    padding: 20px 9px;
+    width: 320px;
+}
+
+#main-menu {
+    display: none;
+}
+
+#toggle-main-menu,
+#main-menu a {
+display: block;
+    background-color: #2773b4;
+    
+    color: #fff;
+    border-top: 1px solid #124167;
+    padding: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+#toggle-main-menu {
+    border-top: 0;
+}
+
+#sitemap li {
+    display: block;
+}
+
+#file-archive .size,
+#file-archive .kind,
+#file-archive .date-modified {
+    display: none;
+}
+
+
+#file-archive span {
+    padding: 5px 0;
 }
