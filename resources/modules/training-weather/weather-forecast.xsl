@@ -21,15 +21,13 @@
         <div id="weather-forecast">
             <h2>
                 <xsl:value-of select="concat('Weather forecast for ', location/name)"/>
-            </h2>
-            
+            </h2>            
             <ol>            
                 <xsl:apply-templates select="forecast/tabular/time[position() le 6]"/>
-            </ol>
-            
-            <div class="disclaimer">
+            </ol>            
+            <p class="disclaimer">
                 Weather forecast from yr.no, delivered by the Norwegian Meteorological Institute and the NRK
-            </div>
+            </p>
         </div>
     </xsl:template>
     
@@ -50,102 +48,7 @@
             <div class="temperature">
                 <xsl:value-of select="concat(temperature/@value, ' &#176;')"/>
             </div>
-        </li>
-        
+        </li>        
     </xsl:template>
-    
-    
-    <!-- Formats date (and time) -->
-    <!-- Valid input formats: ISO 8601 -->
-    <xsl:template name="stk:time.format-date">
-        <xsl:param name="date"/>
-        <xsl:param name="language" as="xs:string?" select="$stk:language"/>
-        <xsl:param name="picture" as="xs:string?"/>
-        <xsl:param name="include-time" as="xs:boolean?" select="false()"/>
-        <xsl:choose>
-            <xsl:when test="not($date castable as xs:string)">                
-                <xsl:text>Erroneous date format</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="date-parts" select="tokenize(xs:string($date), ' |T')"/>
-                <xsl:choose>
-                    <xsl:when test="not($date-parts[1] castable as xs:date)">                        
-                        <xsl:text>Erroneous date format</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:variable name="final-picture">
-                            <xsl:choose>
-                                <xsl:when test="empty($picture)">
-                                    <xsl:choose>
-                                        <xsl:when test="$language = 'no'">
-                                            <xsl:text>[D01].[M01].[Y0001]</xsl:text>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:text>[D01]/[M01]/[Y0001]</xsl:text>
-                                        </xsl:otherwise>
-                                    </xsl:choose> 
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="$picture"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        <span class="date">                            
-                            <xsl:value-of select="format-date(xs:date($date-parts[1]), $final-picture)"/>
-                        </span>
-                        <xsl:if test="$include-time and normalize-space($date-parts[2])">
-                            <xsl:call-template name="stk:time.format-time">
-                                <xsl:with-param name="time" select="$date-parts[2]"/>
-                            </xsl:call-template>
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>                
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <!-- Formats time -->
-    <!-- Valid input formats: ISO 8601 and hh:mm -->
-    <xsl:template name="stk:time.format-time">
-        <xsl:param name="time"/>
-        <xsl:param name="language" as="xs:string?" select="$stk:language"/>
-        <xsl:param name="picture" as="xs:string?"/>
-        
-        <xsl:variable name="final-time">
-            <xsl:value-of select="$time"/>
-            <xsl:if test="count(tokenize(xs:string($time), ':')) lt 3">:00</xsl:if>
-        </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="not($final-time castable as xs:time)">
-                <xsl:text>Erroneous time format</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="final-picture">
-                    <xsl:choose>
-                        <xsl:when test="empty($picture)">
-                            <xsl:choose>
-                                <xsl:when test="$language = 'no'">
-                                    <xsl:text>[H01].[m01]</xsl:text>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text>[H01]:[m01]</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose> 
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="$picture"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <span class="time">                    
-                    <xsl:value-of select="format-time($final-time, $final-picture)"/>
-                </span>
-            </xsl:otherwise>
-        </xsl:choose>           
-    </xsl:template>
-    
-    
-    
-    
     
 </xsl:stylesheet>

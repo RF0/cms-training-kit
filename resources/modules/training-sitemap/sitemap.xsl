@@ -12,9 +12,6 @@
     <xsl:output method="xhtml"/>    
 
     <xsl:variable name="menu" as="element()*" select="/result/menus/menu/menuitems/menuitem"/>
-    <xsl:variable name="number-of-columns" select="floor($stk:region-width div 200)"/>
-    <xsl:variable name="margin" select="20"/>
-    <xsl:variable name="column-width" select="floor(($stk:region-width - ($margin * ($number-of-columns - 1))) div $number-of-columns)"/>
 
     <xsl:template match="/">
         <xsl:if test="$menu">
@@ -30,14 +27,6 @@
 
     <xsl:template match="menuitem">
         <li>
-            <xsl:if test="$stk:device-class = 'desktop'">
-                    <xsl:attribute name="style">
-                        <xsl:value-of select="concat('width: ', $column-width, 'px;')"/>
-                        <xsl:if test="position() mod $number-of-columns != 0">
-                            <xsl:value-of select="concat(' margin-right: ', $margin, 'px;')"/>
-                        </xsl:if>
-                    </xsl:attribute>
-                </xsl:if>
             <xsl:choose>
                 <xsl:when test="@type = 'label' or @type = 'section'">
                     <div>

@@ -12,9 +12,7 @@
     <xsl:import href="/modules/library-stk/menu.xsl"/>
     <xsl:import href="/modules/library-stk/google.xsl"/>    
     <xsl:import href="/modules/library-stk/system.xsl"/>
-    
     <xsl:import href="/modules/library-stk/menu.xsl"/>
-
     
     <!-- HTML 5 doctype -->
     <xsl:output doctype-system="about:legacy-compat" method="xhtml" encoding="utf-8" indent="yes" omit-xml-declaration="yes" include-content-type="no"/>
@@ -75,16 +73,17 @@
             </head>
             <body>
                 <div id="container">
-                    
                     <header>
                         <div id="enonic-header">
                             <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-training-kit-logo-small.png'))}" alt="Enonic Logo"/>
                         </div>
+                        
                         <xsl:call-template name="stk:menu.render">
                             <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
                             <xsl:with-param name="levels" select="1"/>
                             <xsl:with-param name="list-id" select="'main-menu'"/>
                         </xsl:call-template>
+                        
                         <!-- Create content bypass links if defined in config -->
                         <xsl:call-template name="stk:accessibility.create-bypass-links"/>
                     </header>
@@ -94,6 +93,8 @@
                         <xsl:call-template name="stk:region.render">
                             <xsl:with-param name="layout" select="$layout" as="xs:string"/>
                         </xsl:call-template>
+                        
+                        <!-- Print standard message if page does not contain any portlets -->
                         <xsl:if test="not(/result/context/page/regions/region/windows/node())">
                             <div class="welcome-to-the-training-kit">                                
                                 <h1>Welcome to the Enonic Training kit. </h1>
@@ -104,10 +105,9 @@
                     
                     <footer>
                         <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'mobile', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                            <xsl:value-of select="portal:localize('theme-basic.change-to-mobile-version')"/>
+                            <xsl:value-of select="portal:localize('theme-training.change-to-mobile-version')"/>
                         </a>
                     </footer>
-                    
                     
                 </div>
                 <xsl:call-template name="stk:google.analytics"/>
@@ -152,6 +152,8 @@
                         <xsl:call-template name="stk:region.render">
                             <xsl:with-param name="layout" select="$layout" as="xs:string"/>
                         </xsl:call-template>
+                        
+                        <!-- Print standard message if page does not contain any portlets -->
                         <xsl:if test="not(/result/context/page/regions/region/windows/node())">
                             <div class="welcome-to-the-training-kit">                                
                                 <h1>Welcome to the Enonic Training kit. </h1>
@@ -162,7 +164,7 @@
                     
                     <footer>
                         <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'desktop', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                            <xsl:value-of select="portal:localize('theme-basic.change-to-desktop-version')"/>
+                            <xsl:value-of select="portal:localize('theme-training.change-to-desktop-version')"/>
                         </a>
                     </footer>
                     

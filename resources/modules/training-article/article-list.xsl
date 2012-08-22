@@ -55,7 +55,9 @@
         </xsl:call-template>
       </xsl:if>
       <div class="byline">
-        <xsl:value-of select="stk:time.format-date(@publishfrom, $stk:language, 'short', true())"/>
+        <xsl:call-template name="stk:time.format-date">
+          <xsl:with-param name="date" select="@publishfrom"/>
+        </xsl:call-template>
       </div>
       <xsl:if test="normalize-space(contentdata/preface)">
         <div class="preface">

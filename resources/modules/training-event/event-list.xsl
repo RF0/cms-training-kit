@@ -64,14 +64,22 @@
                         <xsl:value-of select="concat(' ', $start-time)"/>
                     </xsl:if>
                 </xsl:variable>
-                <xsl:value-of select="stk:time.format-date($date, $stk:language, (), true())"/>
+                
+                <xsl:call-template name="stk:time.format-date">
+                    <xsl:with-param name="date" select="$date"/>
+                    <xsl:with-param name="include-time" select="true()"/>
+                </xsl:call-template>
                 <xsl:if test="$end-date gt $start-date or $end-time != ''">
                     <xsl:text> -</xsl:text>
-                    <xsl:if test="$end-date gt $start-date">
-                        <xsl:value-of select="concat(' ', stk:time.format-date($end-date, $stk:language, (), ()))"/>
+                    <xsl:if test="$end-date gt $start-date">                        
+                        <xsl:call-template name="stk:time.format-date">
+                            <xsl:with-param name="date" select="$end-date"/>
+                        </xsl:call-template>
                     </xsl:if>
-                    <xsl:if test="$end-time != ''">
-                        <xsl:value-of select="concat(' ', stk:time.format-time($end-time, $stk:language))"/>
+                    <xsl:if test="$end-time != ''">                        
+                        <xsl:call-template name="stk:time.format-time">
+                            <xsl:with-param name="time" select="$end-time"/>
+                        </xsl:call-template>
                     </xsl:if>
                 </xsl:if>                
             </div>

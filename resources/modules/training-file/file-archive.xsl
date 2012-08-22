@@ -59,7 +59,9 @@
             </div>
             <div class="column date-modified">
                 <span>
-                    <xsl:value-of select="stk:time.format-date(@timestamp, $stk:language, 'short', true())"/>
+                    <xsl:call-template name="stk:time.format-date">
+                        <xsl:with-param name="date" select="@timestamp"/>
+                    </xsl:call-template>
                 </span>
             </div>
             <div class="column size">
@@ -94,7 +96,9 @@
                     </div>
                     <div class="column date-modified">
                         <span>
-                            <xsl:value-of select="stk:time.format-date(@timestamp, $stk:language, 'short', true())"/>
+                            <xsl:call-template name="stk:time.format-date">
+                                <xsl:with-param name="date" select="@timestamp"/>
+                            </xsl:call-template>
                         </span>
                     </div>
                     <div class="column size">
