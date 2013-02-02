@@ -1,16 +1,12 @@
 <datasources>
-    <datasource result-element="videos">
-        <methodname>getContentBySection</methodname>
-        <parameters>
-            <parameter name="id" type="int[]">${portal.pageKey}</parameter>
-            <parameter name="levels" type="int">1</parameter>
-            <parameter name="query" type="string">contenttype = 'video'</parameter>
-            <parameter name="orderBy" type="string"/>
-            <parameter name="index" type="int">${select(param.index, 0)}</parameter>
-            <parameter name="count" type="int">10</parameter>
-            <parameter name="includeData" type="boolean">true</parameter>
-            <parameter name="childrenLevel" type="int">1</parameter>
-            <parameter name="parentLevel" type="int">0</parameter>
-        </parameters>
+    <datasource name="getContentBySection" result-element="videos">
+        <parameter name="menuItemKeys">${select(portal.pageKey,-1)}</parameter>
+        <parameter name="levels">1</parameter>
+        <parameter name="query">contenttype = 'video'</parameter>
+        <parameter name="index">${select(param.index, 0)}</parameter>
+        <parameter name="count">10</parameter>
+        <parameter name="includeData">true</parameter>
+        <parameter name="childrenLevel">1</parameter>
+        <parameter name="parentLevel">0</parameter>
     </datasource>
 </datasources>

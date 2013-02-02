@@ -1,9 +1,6 @@
 <datasources>
-    <datasource result-element="yr-data">
-        <methodname>getURLAsXML</methodname>
-        <parameters>
-            <parameter name="url">http://www.yr.no/place/Norway/Akershus/Eidsvoll/R%C3%A5holt/forecast.xml</parameter>
-            <parameter name="timeout">5000</parameter>
-        </parameters>
+    <datasource name="getUrlAsXml" result-element="yr-data">
+        <parameter name="url">http://www.yr.no/place/Norway/Oslo/Oslo/Oppsal/forecast.xml</parameter>
+        <parameter name="timeout">5000</parameter>
     </datasource>
 </datasources>

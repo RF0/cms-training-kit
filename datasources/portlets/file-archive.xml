@@ -1,25 +1,17 @@
 <datasources>
-    <datasource result-element="file-categories">
-        <methodname>getCategories</methodname>
-        <parameters>
-            <parameter name="cat" type="int">${select(param.fileArchiveCategoryKey, -1)}</parameter>
-            <parameter name="levels" type="int">0</parameter>
-            <parameter name="contentCount" type="boolean">false</parameter>
-            <parameter name="includeCurrent" type="boolean">true</parameter>
-        </parameters>
+    <datasource name="getCategories" result-element="file-categories">
+        <parameter name="categoryKey">${select(param.fileArchiveCategoryKey, -1)}</parameter>
+        <parameter name="levels">0</parameter>
     </datasource>
-    <datasource result-element="files">
-        <methodname>getContentByCategory</methodname>
-        <parameters>
-            <parameter name="cat" type="int[]">${select(param.fileArchiveCategoryKey, -1)}</parameter>
-            <parameter name="levels" type="int">0</parameter>
-            <parameter name="query" type="string"></parameter>
-            <parameter name="orderBy" type="string"></parameter>
-            <parameter name="index" type="int">0</parameter>
-            <parameter name="count" type="int">1000</parameter>
-            <parameter name="includeData" type="boolean">true</parameter>
-            <parameter name="childrenLevel" type="int">0</parameter>
-            <parameter name="parentLevel" type="int">0</parameter>
-        </parameters>
+    <datasource name="getContentByCategory" result-element="files">
+        <parameter name="categoryKeys">${select(param.fileArchiveCategoryKey,-1)}</parameter>
+        <parameter name="levels">0</parameter>
+        <parameter name="query"/>
+        <parameter name="orderBy"/>
+        <parameter name="index">${select(param.index, 0)}</parameter>
+        <parameter name="count">1000</parameter>
+        <parameter name="includeData">true</parameter>
+        <parameter name="childrenLevel">1</parameter>
+        <parameter name="parentLevel">0</parameter>
     </datasource>
 </datasources>
