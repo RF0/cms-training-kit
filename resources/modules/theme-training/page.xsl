@@ -81,7 +81,7 @@
                         <xsl:call-template name="stk:menu.render">
                             <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
                             <xsl:with-param name="levels" select="1"/>
-                            <xsl:with-param name="list-id" select="'main-menu'"/>
+                            <xsl:with-param name="id" select="'main-menu'"/>
                         </xsl:call-template>
                         
                         <!-- Create content bypass links if defined in config -->
@@ -143,7 +143,7 @@
                         <xsl:call-template name="stk:menu.render">
                             <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
                             <xsl:with-param name="levels" select="1"/>
-                            <xsl:with-param name="list-id" select="'main-menu'"/>
+                            <xsl:with-param name="id" select="'main-menu'"/>
                         </xsl:call-template>
                     </header>
                     
