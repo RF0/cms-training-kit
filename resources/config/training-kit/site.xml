@@ -1,5 +1,5 @@
 <config>
-    <theme>theme-training</theme>
+    <theme>theme-training-kit</theme>
     <parameters>
         <parameter path="/" name="meta-generator">Enonic CMS</parameter>
         <parameter path="/" name="meta-author">Enonic</parameter>

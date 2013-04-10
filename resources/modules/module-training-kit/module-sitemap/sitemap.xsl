@@ -7,7 +7,7 @@
     xmlns:stk="http://www.enonic.com/cms/xslt/stk">    
     
     <xsl:import href="/modules/library-stk/stk-variables.xsl"/>
-    <xsl:import href="/modules/library-stk/menu.xsl"/>
+    <xsl:import href="/modules/library-stk/navigation.xsl"/>
     
     <xsl:output method="xhtml"/>    
 
@@ -30,7 +30,7 @@
             <xsl:choose>
                 <xsl:when test="@type = 'label' or @type = 'section'">
                     <div>
-                        <xsl:value-of select="stk:menu.menuitem-name(.)"/>
+                        <xsl:value-of select="stk:navigation.get-menuitem-name(.)"/>
                     </div>
                 </xsl:when>
                 <xsl:otherwise>
@@ -38,7 +38,7 @@
                         <xsl:if test="url/@newwindow = 'yes'">
                             <xsl:attribute name="rel">external</xsl:attribute>
                         </xsl:if>
-                        <xsl:value-of select="stk:menu.menuitem-name(.)"/>
+                        <xsl:value-of select="stk:navigation.get-menuitem-name(.)"/>
                     </a>
                 </xsl:otherwise>
             </xsl:choose>
