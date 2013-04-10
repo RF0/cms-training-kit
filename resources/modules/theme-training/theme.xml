@@ -1,59 +1,10 @@
 <theme>
     <region-prefix/>
     <!--<accessibility>
-        <access-key key="m" text="stk.accessibility.main-menu" anchor="menu-main" />
-        <access-key key="s" text="stk.accessibility.sub-menu" anchor="menu-sub" />
-        <access-key key="c" text="stk.accessibility.center" anchor="center" />
+        <bypass text="stk.accessibility.skip-to-main-content" anchor="main" access-key=""/>
     </accessibility>-->
     <device-classes>
-        <device-class name="desktop,unknown">
-            <layout name="default">
-                <area width="1000">
-                    <region name="north">
-                        <width>1000</width>
-                        <margin>
-                            <bottom>10</bottom>
-                        </margin>
-                    </region>
-                </area>
-                <area width="1000">
-                    <region name="west">
-                        <width>180</width>
-                        <margin>
-                            <right>10</right>
-                        </margin>
-                        <padding>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                    </region>
-                    <region name="center" class="">
-                        <padding>
-                            <right>20</right>
-                            <left>20</left>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                        <scalable>true</scalable>
-                        <system>true</system>
-                    </region>
-                    <region name="east">
-                        <width>180</width>
-                        <padding>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                        <margin>
-                            <left>10</left>
-                        </margin>
-                    </region>
-                </area>
-                <area width="1000">
-                    <region name="south">
-                        <width>1000</width>
-                    </region>
-                </area>
-            </layout>
+        <device-class name="all">
             <image>
                 <format>jpeg</format>
                 <quality>80</quality>
@@ -88,12 +39,67 @@
                     </size>
                 </sizes>
             </image>
+            <scripts>              
+                <script>/_public/library-stk/js/jquery.js</script>
+                <script>/_public/library-stk/js/stk.js</script>                
+                <script>/_public/library-stk/js/stk-aria.js</script>
+                <script>{theme}all.js</script>                
+                <script condition="lt IE 9">/_public/library-stk/js/html5shiv.js</script>
+                <script condition="lt IE 9">/_public/library-stk/js/selectivizr-min.js</script>
+            </scripts>
+        </device-class>
+        <device-class name="desktop,unknown">
+            <layout name="default">
+                <area width="1000">
+                    <region name="north">
+                        <width>1000</width>
+                        <margin>
+                            <bottom>10</bottom>
+                        </margin>
+                    </region>
+                </area>
+                <area width="1000">
+                    <region name="west">
+                        <width>180</width>
+                        <margin>
+                            <right>10</right>
+                        </margin>
+                        <padding>
+                            <top>20</top>
+                            <bottom>20</bottom>
+                        </padding>
+                    </region>
+                    <region name="center" class="">
+                        <padding>
+                            <right>20</right>
+                            <left>20</left>
+                            <top>20</top>
+                            <bottom>20</bottom>
+                        </padding>
+                        <scalable>true</scalable>
+                    </region>
+                    <region name="east">
+                        <width>180</width>
+                        <padding>
+                            <top>20</top>
+                            <bottom>20</bottom>
+                        </padding>
+                        <margin>
+                            <left>10</left>
+                        </margin>
+                    </region>
+                </area>
+                <area width="1000">
+                    <region name="south">
+                        <width>1000</width>
+                    </region>
+                </area>
+            </layout>
             <styles>
-                <style>/_public/theme-training/css/desktop.css</style>
+                <style>{theme}desktop.css</style>
             </styles>
-            <scripts>
-                <script>/_public/theme-training/javascript/jquery-1.8.0.min.js</script>                
-                <script>/_public/theme-training/javascript/desktop.js</script>
+            <scripts>           
+                <script>{theme}desktop.js</script>
             </scripts>
         </device-class>
         <device-class name="mobile">
@@ -148,46 +154,11 @@
                     </regions>
                 </area>                    
             </layout>
-            <image>
-                <format>jpeg</format>
-                <quality>70</quality>
-                <filters>
-                    <filter>rounded(4)</filter>
-                </filters>
-                <sizes>
-                    <size name="full">
-                        <filter>scalewidth</filter>
-                        <width>1</width>
-                    </size>
-                    <size name="wide">
-                        <filter>scalewide</filter>
-                        <width>1</width>
-                        <height>0.4</height>
-                    </size>
-                    <size name="regular">
-                        <filter>scalewidth</filter>
-                        <width>0.4</width>
-                    </size>
-                    <size name="list">
-                        <filter>scalewidth</filter>
-                        <width>0.3</width>
-                    </size>
-                    <size name="square">
-                        <filter>scalesquare</filter>
-                        <size>0.4</size>
-                    </size>
-                    <size name="thumbnail">
-                        <filter>scalesquare</filter>
-                        <size>0.1</size>
-                    </size>
-                </sizes>
-            </image>
             <styles>
-                <style>/_public/theme-training/css/mobile.css</style>
+                <style>{theme}mobile.css</style>
             </styles>
-            <scripts>
-                <script>/_public/theme-training/javascript/jquery-1.8.0.min.js</script>                
-                <script>/_public/theme-training/javascript/mobile.js</script>
+            <scripts>              
+                <script>{theme}mobile.js</script>
             </scripts>
         </device-class>
     </device-classes>
