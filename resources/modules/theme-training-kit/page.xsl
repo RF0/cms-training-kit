@@ -105,7 +105,7 @@
                     
                     <footer>
                         <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'mobile', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                            <xsl:value-of select="portal:localize('theme-training.change-to-mobile-version')"/>
+                            <xsl:value-of select="portal:localize('theme-training-kit.change-to-mobile-version')"/>
                         </a>
                     </footer>
                     
@@ -164,7 +164,7 @@
                     
                     <footer>
                         <a href="{portal:createServicesUrl('portal','forceDeviceClass', ('deviceclass', 'desktop', 'lifetime', 'session'))}" class="change-device-class" rel="nofollow">
-                            <xsl:value-of select="portal:localize('theme-training.change-to-desktop-version')"/>
+                            <xsl:value-of select="portal:localize('theme-training-kit.change-to-desktop-version')"/>
                         </a>
                     </footer>
                     
