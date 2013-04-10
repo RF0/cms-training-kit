@@ -6,7 +6,8 @@
     xmlns:portal="http://www.enonic.com/cms/xslt/portal"
     xmlns:stk="http://www.enonic.com/cms/xslt/stk">    
     
-    <xsl:import href="/modules/library-stk/stk-variables.xsl"/>    
+    <xsl:import href="/modules/library-stk/stk-variables.xsl"/>   
+    <xsl:import href="/modules/library-stk/file.xsl"/>  
     <xsl:import href="/modules/library-stk/time.xsl"/>
     
     <xsl:output method="xhtml"/>
@@ -43,8 +44,9 @@
                 <xsl:value-of select="format-number(symbol/@number, '00')"/>
                 <xsl:value-of select="if (@period = '0') then 'n' else 'd'"/>
                 <xsl:text>.png</xsl:text>
-            </xsl:variable>
-            <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/yr-symbols/', $symbol-img))}" alt="{symbol/@name}"/>
+            </xsl:variable><!--
+            <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/yr-symbols/', $symbol-img))}" alt="{symbol/@name}"/>-->
+            <img src="{stk:file.create-resource-url(concat('/all/yr-symbols/', $symbol-img))}" alt="{symbol/@name}"/>
             <div class="temperature">
                 <xsl:value-of select="concat(temperature/@value, ' &#176;')"/>
             </div>
