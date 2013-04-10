@@ -8,14 +8,14 @@
     <xsl:import href="/modules/library-stk/stk-variables.xsl"/>
     <xsl:import href="/modules/library-stk/region.xsl"/>
     <xsl:import href="/modules/library-stk/head.xsl"/>
+    <xsl:import href="/modules/library-stk/file.xsl"/>
     <xsl:import href="/modules/library-stk/accessibility.xsl"/>    
-    <xsl:import href="/modules/library-stk/menu.xsl"/>
-    <xsl:import href="/modules/library-stk/google.xsl"/>    
+    <xsl:import href="/modules/library-stk/analytics.xsl"/>    
     <xsl:import href="/modules/library-stk/system.xsl"/>
-    <xsl:import href="/modules/library-stk/menu.xsl"/>
+    <xsl:import href="/modules/library-stk/navigation.xsl"/>
     
     <!-- HTML 5 doctype -->
-    <xsl:output doctype-system="about:legacy-compat" method="xhtml" encoding="utf-8" indent="yes" omit-xml-declaration="yes" include-content-type="no"/>
+    <xsl:output doctype-system="about:legacy-compat" method="xhtml" encoding="utf-8" indent="no" omit-xml-declaration="yes" include-content-type="no"/>
     
     <!-- page type -->
     <!-- For multiple layouts on one site. Various layouts can be configured in theme.xml, each with a different 'name' attribute on the 'layout' element. -->
@@ -60,11 +60,11 @@
         <html lang="{$stk:language}">
             <head>
                 <title>
-                    <xsl:value-of select="stk:menu.menuitem-name($stk:current-resource)"/>
+                    <xsl:value-of select="stk:navigation.get-menuitem-name($stk:current-resource)"/>
                     <xsl:value-of select="concat(' - ', $stk:site-name)"/>
                 </title>
                 <xsl:call-template name="stk:head.create-metadata"/>
-                <xsl:call-template name="stk:head.create-javascript"/>
+                <xsl:call-template name="stk:head.create-js"/>
                 <xsl:call-template name="stk:head.create-css"/>
                 
                 <xsl:call-template name="stk:region.create-css">
@@ -75,10 +75,10 @@
                 <div id="container">
                     <header>
                         <div id="enonic-header">
-                            <img src="{portal:createResourceUrl(concat($stk:theme-public, 'images/all/enonic-training-kit-logo-small.png'))}" alt="Enonic Logo"/>
+                            <img src="{stk:file.create-resource-url('all/enonic-training-kit-logo-small.png')}" alt="Enonic Logo"/>
                         </div>
                         
-                        <xsl:call-template name="stk:menu.render">
+                        <xsl:call-template name="stk:navigation.create-menu">
                             <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
                             <xsl:with-param name="levels" select="1"/>
                             <xsl:with-param name="id" select="'main-menu'"/>
@@ -90,7 +90,7 @@
                     
                     <div id="main-content">
                         <!-- Renders all regions defined in config -->
-                        <xsl:call-template name="stk:region.render">
+                        <xsl:call-template name="stk:region.create">
                             <xsl:with-param name="layout" select="$layout" as="xs:string"/>
                         </xsl:call-template>
                         
@@ -110,7 +110,7 @@
                     </footer>
                     
                 </div>
-                <xsl:call-template name="stk:google.analytics"/>
+                <xsl:call-template name="stk:analytics.google"/>
             </body>
         </html>
     </xsl:template>
@@ -121,13 +121,13 @@
         <html lang="{$stk:language}">
             <head>                
                 <title>
-                    <xsl:value-of select="stk:menu.menuitem-name($stk:current-resource)"/>
+                    <xsl:value-of select="stk:navigation.get-menuitem-name($stk:current-resource)"/>
                 </title>
                 <xsl:call-template name="stk:head.create-metadata"/>                
                 <meta content="minimum-scale=1.0, width=device-width, user-scalable=yes" name="viewport" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 
-                <xsl:call-template name="stk:head.create-javascript"/>
+                <xsl:call-template name="stk:head.create-js"/>
                 <xsl:call-template name="stk:head.create-css"/>
                 
                 <xsl:call-template name="stk:region.create-css">
@@ -140,7 +140,7 @@
                         <a href="#" id="toggle-main-menu">
                             <xsl:value-of select="portal:localize('menu.toggle-menu')"/>
                         </a>
-                        <xsl:call-template name="stk:menu.render">
+                        <xsl:call-template name="stk:navigation.create-menu">
                             <xsl:with-param name="menuitems" select="/result/menus/menu/menuitems"/>
                             <xsl:with-param name="levels" select="1"/>
                             <xsl:with-param name="id" select="'main-menu'"/>
@@ -149,7 +149,7 @@
                     
                     <div id="main-content">
                         <!-- Renders all regions defined in config -->
-                        <xsl:call-template name="stk:region.render">
+                        <xsl:call-template name="stk:region.create">
                             <xsl:with-param name="layout" select="$layout" as="xs:string"/>
                         </xsl:call-template>
                         
@@ -169,7 +169,7 @@
                     </footer>
                     
                 </div>
-                <xsl:call-template name="stk:google.analytics"/>
+                <xsl:call-template name="stk:analytics.google"/>
             </body>
         </html>
     </xsl:template>
