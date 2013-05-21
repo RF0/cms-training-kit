@@ -1,0 +1,76 @@
+@import '../../library-stk/css/reset.less';
+@import '../../library-stk/css/stk.less';
+
+body {
+    background: #eee;
+    font-size: 16px;
+}
+
+#container {
+    background: #fff;
+    border: 1px solid #666;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.current-device-class {
+    float: right;
+    background: #def;
+    padding: 10px;
+}
+
+.change-device-class {
+    display: block;
+    margin-top: 20px;
+}
+
+#accessibility-links a {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+#accessibility-links a:focus,
+#accessibility-links a:active {
+    position:  static;
+    left: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    text-decoration: underline;
+}
+
+.success {
+    color: #0f0;
+}
+
+.fail {
+    color: #f00;
+}
+
+dl {
+    
+    dt {
+        font-weight: bold;
+    }
+    
+    dd {
+        margin-bottom: 20px;
+    }        
+}
+
+

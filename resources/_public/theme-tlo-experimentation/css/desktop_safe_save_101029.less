@@ -1,0 +1,210 @@
+@import 'all.less';
+
+
+
+.area, .row {
+    overflow: hidden;
+}
+
+.col {
+    float: left;
+    padding: 0 10px;
+    box-sizing: border-box;
+    
+}
+
+
+.group {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+
+.col:first-child {
+}
+
+.col:last-child {
+}
+
+.col:only-of-type {
+}
+
+
+
+
+@columns: 9;
+
+/* Create width for all column classes */
+.loop-grid-span (@index) when (@index > 0) {
+    .span-@{index} {
+        width: 100% * (@index / @columns);
+    }
+    .loop-grid-span (@index - 1);
+}
+.loop-grid-span (0) {}
+.loop-grid-span (@columns);
+
+
+
+
+
+@media (min-width: 1440px) {
+    #container {
+        width: 1440px;
+    }
+}
+
+@media (min-width: 960px) and (max-width: 1439px) {
+    #container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 580px) and (max-width: 959px) {
+    #container {
+        width: 100%;
+    }
+    
+    
+    .group.span-4 {
+        width: 66.66667%;
+    }
+    
+    .group.span-5 {
+        width: 33.33333%;
+    }
+    
+    .group .span-4, .group .span-5 {
+        width: 100%;
+    }
+    
+    /*.r2-c3 {
+        display: none;
+    }*/
+}
+
+@media (max-width: 579px) {
+    .col,
+    .group {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+
+@media (min-width: 960px) {
+    header {
+        nav {
+            position: absolute;
+            left: 103px;
+            top: 10px;
+            
+            .menu-level-1 {
+                
+                & > li:hover ol {
+                    display: block;
+                }
+                
+                 > li {
+                    padding: 10px 15px;
+                    float: left;
+                    position: relative;
+                    
+                    &.path {
+                        background: #2d639c;
+                        .border-radius(3px);
+                    }
+                }
+            }
+            
+            .menu-level-2 {
+                display: none;
+                position: absolute;
+                background: url('../img/all/menu-sub-pointer.png') 10px 20px no-repeat;
+                .border-radius(3px);
+                padding-top: 25px;
+                
+                li {
+                    background: #30649a;
+                    padding: 14px 12px;
+                    
+                    &:first-child {
+                        .border-radius(3px 3px 0 0);
+                    }
+                    
+                    &:last-child {
+                        .border-radius(0 0 3px 3px);
+                    }
+                }
+            }
+            
+            
+            
+        }
+    }
+}
+
+
+@media (max-width:959px) {
+    
+    header {
+        
+        .menu-level-1 {
+            position: absolute;
+            top: 55px;
+            
+            background: #30649a;
+            
+            width: 100%;
+            
+            li {
+                padding: 15px 20px;
+            }
+            
+        }
+        
+        .menu-level-2 {
+            display: none;
+        }
+    }
+}
+
+
+
+header {
+    height: 55px;
+    background: #4a77a6;
+    position: relative;
+    font-family: 'TINESariMedium';
+    
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .logo {
+        margin: 10px 0 0 15px;
+    }
+    
+    
+}
+
+
+@font-face{
+	font-family: TINESariMedium;
+	src: url('http://webfiles.tine.no/sari-font/SariWeb.eot');
+}
+
+@font-face{
+	font-family: TINESariMedium;
+	src: url('http://webfiles.tine.no/sari-font/SariWeb.woff') format('woff');
+}
+
+@font-face{
+	font-family: TINESariBold;
+	src: url('http://webfiles.tine.no/sari-font/SariWeb-Bold.eot');
+	src: url('http://webfiles.tine.no/sari-font/SariWeb-Bold.eot?#iefix') format('embedded-opentype'),
+	url('http://webfiles.tine.no/sari-font/SariWeb-Bold.woff') format('woff');
+}
+
