@@ -11,6 +11,13 @@
                 <filters>
                     <filter>rounded(4)</filter>
                 </filters>
+                <prescaled>
+                    <size>64</size>
+                    <size>128</size>
+                    <size>256</size>
+                    <size>512</size>
+                    <size>1024</size>
+                </prescaled>
                 <sizes>
                     <size name="full">
                         <filter>scalewidth</filter>
@@ -39,128 +46,46 @@
                     </size>
                 </sizes>
             </image>
-            <scripts>              
-                <script>/_public/library-stk/js/jquery.js</script>
-                <script>/_public/library-stk/js/stk.js</script>                
-                <script>/_public/library-stk/js/stk-aria.js</script>
-                <script>{theme}all.js</script>                
-                <script condition="lt IE 9">/_public/library-stk/js/html5shiv.js</script>
-                <script condition="lt IE 9">/_public/library-stk/js/selectivizr-min.js</script>
+            <scripts>   
+                <script>
+                    <path>{stk}/less-min.js</path>
+                </script>
+                <script>
+                    <path>//code.jquery.com/jquery-latest.min.js</path>
+                </script>
+                <script>
+                    <path>{stk}/stk.js</path>
+                </script>
+                <script>
+                    <path>{stk}/stk-aria.js</path>
+                </script>
+                <script>
+                    <path>{theme}/main.js</path>
+                </script>
+                <script>
+                    <path>//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js</path>                    
+                    <condition>lt IE 9</condition>
+                    <placement>head</placement>
+                </script>
+                <script>
+                    <path>{stk}/selectivizr-min.js</path>
+                    <condition>lt IE 9</condition>
+                </script>
             </scripts>
         </device-class>
         <device-class name="desktop,unknown">
             <layout name="default">
-                <area width="1000">
-                    <region name="north">
-                        <width>1000</width>
-                        <margin>
-                            <bottom>10</bottom>
-                        </margin>
+                <row cols="12">
+                    <region name="r1-c1">
+                        <cols>12</cols>
                     </region>
-                </area>
-                <area width="1000">
-                    <region name="west">
-                        <width>180</width>
-                        <margin>
-                            <right>10</right>
-                        </margin>
-                        <padding>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                    </region>
-                    <region name="center" class="">
-                        <padding>
-                            <right>20</right>
-                            <left>20</left>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                        <scalable>true</scalable>
-                    </region>
-                    <region name="east">
-                        <width>180</width>
-                        <padding>
-                            <top>20</top>
-                            <bottom>20</bottom>
-                        </padding>
-                        <margin>
-                            <left>10</left>
-                        </margin>
-                    </region>
-                </area>
-                <area width="1000">
-                    <region name="south">
-                        <width>1000</width>
-                    </region>
-                </area>
+                </row>
             </layout>
             <styles>
-                <style>{theme}desktop.css</style>
+                <style>
+                    <path>{theme}/main.less</path>
+                </style>
             </styles>
-            <scripts>           
-                <script>{theme}desktop.js</script>
-            </scripts>
-        </device-class>
-        <device-class name="mobile">
-            <layout name="default">
-                <area width="320">
-                    <regions>
-                        <region name="north">
-                            <width>296</width>
-                            <padding>
-                                <left>12</left>
-                                <right>12</right>
-                                <top>12</top>
-                                <bottom>12</bottom>
-                            </padding>
-                        </region>
-                        <region name="west">
-                            <width>296</width>
-                            <padding>
-                                <left>12</left>
-                                <right>12</right>
-                                <top>12</top>
-                                <bottom>12</bottom>
-                            </padding>
-                        </region>
-                        <region name="center">
-                            <width>296</width>
-                            <padding>
-                                <left>12</left>
-                                <right>12</right>
-                                <top>12</top>
-                                <bottom>12</bottom>
-                            </padding>
-                        </region>
-                        <region name="east">
-                            <width>296</width>
-                            <padding>
-                                <left>12</left>
-                                <right>12</right>
-                                <top>12</top>
-                                <bottom>12</bottom>
-                            </padding>
-                        </region>
-                        <region name="south">
-                            <width>296</width>
-                            <padding>
-                                <left>12</left>
-                                <right>12</right>
-                                <top>12</top>
-                                <bottom>12</bottom>
-                            </padding>
-                        </region>
-                    </regions>
-                </area>                    
-            </layout>
-            <styles>
-                <style>{theme}mobile.css</style>
-            </styles>
-            <scripts>              
-                <script>{theme}mobile.js</script>
-            </scripts>
         </device-class>
     </device-classes>
-
 </theme>

@@ -13,24 +13,26 @@
     <xsl:output method="xhtml"/>
     
     <xsl:template match="/">
-        <xsl:choose>
-            <xsl:when test="/result/videos/contents/content">
-                <xsl:call-template name="stk:pagination.create-header">
-                    <xsl:with-param name="contents" select="/result/videos/contents"/>
-                </xsl:call-template>
-                <ol>                    
-                    <xsl:apply-templates select="/result/videos/contents/content"/>
-                </ol>
-                <xsl:call-template name="stk:pagination.create-menu">
-                    <xsl:with-param name="contents" select="/result/videos/contents"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <p>
-                    <xsl:value-of select="portal:localize('video.no-videos')"/>
-                </p>
-            </xsl:otherwise>
-        </xsl:choose>
+        <div class="video-list">
+            <xsl:choose>
+                <xsl:when test="/result/videos/contents/content">
+                    <xsl:call-template name="stk:pagination.create-header">
+                        <xsl:with-param name="contents" select="/result/videos/contents"/>
+                    </xsl:call-template>
+                    <ol>                    
+                        <xsl:apply-templates select="/result/videos/contents/content"/>
+                    </ol>
+                    <xsl:call-template name="stk:pagination.create-menu">
+                        <xsl:with-param name="contents" select="/result/videos/contents"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <p>
+                        <xsl:value-of select="portal:localize('video.no-videos')"/>
+                    </p>
+                </xsl:otherwise>
+            </xsl:choose>
+        </div>        
     </xsl:template>
     
     <xsl:template match="content">

@@ -11,5 +11,6 @@
         
         <parameter path="/" name="google-analytics-web-property-id"></parameter>
         <parameter path="/" name="google-site-verification"></parameter>
+        
     </parameters>
 </config>

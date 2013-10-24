@@ -15,7 +15,7 @@
 
     <xsl:template match="/">
         <xsl:if test="$menu">
-            <section id="sitemap">
+            <section class="sitemap">
                 <h1>Sitemap</h1>
                 <ul>
                     <xsl:apply-templates select="$menu"/>

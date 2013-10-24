@@ -15,45 +15,45 @@
   <xsl:output method="xhtml"/>
     
   <xsl:template match="/">
-    <xsl:choose>
-      <xsl:when test="/result/articles/contents/content">
-        <xsl:call-template name="stk:pagination.create-header">
-          <xsl:with-param name="contents" select="/result/articles/contents"/>
-        </xsl:call-template>
-        <xsl:if test="/result/articles/contents/content">
-          <ol id="article-list">
-            <xsl:apply-templates select="/result/articles/contents/content"/>
-          </ol>
-        </xsl:if>
-        <xsl:call-template name="stk:pagination.create-menu">
-          <xsl:with-param name="contents" select="/result/articles/contents"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <p>
-          <xsl:value-of select="portal:localize('article.no-articles')"/>
-        </p>
-      </xsl:otherwise>
-    </xsl:choose>
+    <div class="article-list">
+      <xsl:choose>
+        <xsl:when test="/result/articles/contents/content">
+          <xsl:call-template name="stk:pagination.create-header">
+            <xsl:with-param name="contents" select="/result/articles/contents"/>
+          </xsl:call-template>
+          <xsl:if test="/result/articles/contents/content">
+            <ol>
+              <xsl:apply-templates select="/result/articles/contents/content"/>
+            </ol>
+          </xsl:if>
+          <xsl:call-template name="stk:pagination.create-menu">
+            <xsl:with-param name="contents" select="/result/articles/contents"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <p>
+            <xsl:value-of select="portal:localize('article.no-articles')"/>
+          </p>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>    
   </xsl:template>
   
   <xsl:template match="content">
     <li>
-      <xsl:if test="$stk:device-class != 'mobile'">
-        <xsl:call-template name="image">
-          <xsl:with-param name="size" select="'list'"/>
-        </xsl:call-template>
+      <xsl:if test="/result/articles/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]">
+        <a href="{portal:createContentUrl(@key,())}" title="{title}">
+          <xsl:call-template name="stk:image.create">
+            <xsl:with-param name="image" select="/result/articles/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
+            <xsl:with-param name="size" select="'thumbnail'"/>
+          </xsl:call-template>
+        </a>
       </xsl:if>
       <h2>
         <a href="{portal:createContentUrl(@key,())}">
           <xsl:value-of select="contentdata/heading"/>
         </a>
       </h2>
-      <xsl:if test="$stk:device-class = 'mobile'">
-        <xsl:call-template name="image">
-          <xsl:with-param name="size" select="'wide'"/>
-        </xsl:call-template>
-      </xsl:if>
       <div class="byline">
         <xsl:call-template name="stk:time.format-date">
           <xsl:with-param name="date" select="@publishfrom"/>
@@ -70,17 +70,6 @@
       </a>
     </li>
   </xsl:template>
-  
-  <xsl:template name="image">
-    <xsl:param name="size"/>
-    <xsl:if test="/result/articles/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]">
-      <a href="{portal:createContentUrl(@key,())}" title="{title}">
-        <xsl:call-template name="stk:image.create">
-          <xsl:with-param name="image" select="/result/articles/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
-          <xsl:with-param name="size" select="$size"/>
-        </xsl:call-template>
-      </a>
-    </xsl:if>
-  </xsl:template>
+ 
   
 </xsl:stylesheet>

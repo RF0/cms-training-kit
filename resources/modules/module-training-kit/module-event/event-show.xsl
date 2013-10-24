@@ -16,7 +16,7 @@
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="/result/event/contents/content">
-                <article id="event-show">
+                <article class="event-show">
                     <xsl:apply-templates select="/result/event/contents/content"/>
                 </article>
             </xsl:when>
@@ -36,7 +36,7 @@
         <h1>
             <xsl:value-of select="title"/>
         </h1>
-        <p class="preface" id="time-location">
+        <div class="preface" id="time-location">
             <strong>
                 <xsl:value-of select="concat(portal:localize('event.when'), ': ')"/>
             </strong>
@@ -72,7 +72,7 @@
                 </strong>
                 <xsl:value-of select="contentdata/location"/>
             </xsl:if>
-        </p>        
+        </div>        
         
         <xsl:if test="/result/event/contents/relatedcontents/content[@key = current()/contentdata/image/image/@key]">
             <xsl:call-template name="stk:image.create">

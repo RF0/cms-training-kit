@@ -28,7 +28,7 @@
   </xsl:template>
 
   <xsl:template match="content">
-    <article>
+    <article class="article-show">
       <h1>
         <xsl:value-of select="title"/>
       </h1>
@@ -36,7 +36,6 @@
       <xsl:if test="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image/image/@key]">
         <xsl:call-template name="stk:image.create">
           <xsl:with-param name="image" select="/result/article/contents/relatedcontents/content[@key = current()/contentdata/image[1]/image/@key]"/>
-          <xsl:with-param name="size" select="if ($stk:device-class = 'mobile') then 'full' else 'list'"/>
           <xsl:with-param name="class" select="'intro-image'"/>
         </xsl:call-template>
       </xsl:if>
@@ -48,11 +47,11 @@
       </div>
       
       <xsl:if test="normalize-space(contentdata/preface)">
-        <p class="preface">          
+        <div class="preface">          
           <xsl:call-template name="stk:text.process">
             <xsl:with-param name="text" select="contentdata/preface"/>
           </xsl:call-template>
-        </p>
+        </div>
       </xsl:if>
       <xsl:call-template name="stk:html.process">
         <xsl:with-param name="document" select="contentdata/text"/>

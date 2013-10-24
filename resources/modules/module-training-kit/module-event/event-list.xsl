@@ -15,24 +15,26 @@
     <xsl:output method="xhtml"/>
             
     <xsl:template match="/">
-        <xsl:choose>
-            <xsl:when test="/result/events/contents/content">
-                <xsl:call-template name="stk:pagination.create-header">
-                    <xsl:with-param name="contents" select="/result/events/contents"/>
-                </xsl:call-template>
-                <ol id="event-list">                    
-                    <xsl:apply-templates select="/result/events/contents/content"/>
-                </ol>
-                <xsl:call-template name="stk:pagination.create-menu">
-                    <xsl:with-param name="contents" select="/result/events/contents"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <p>
-                    <xsl:value-of select="portal:localize('event.no-events')"/>
-                </p>
-            </xsl:otherwise>
-        </xsl:choose>
+        <div class="event-list">
+            <xsl:choose>
+                <xsl:when test="/result/events/contents/content">
+                    <xsl:call-template name="stk:pagination.create-header">
+                        <xsl:with-param name="contents" select="/result/events/contents"/>
+                    </xsl:call-template>
+                    <ol>                    
+                        <xsl:apply-templates select="/result/events/contents/content"/>
+                    </ol>
+                    <xsl:call-template name="stk:pagination.create-menu">
+                        <xsl:with-param name="contents" select="/result/events/contents"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <p>
+                        <xsl:value-of select="portal:localize('event.no-events')"/>
+                    </p>
+                </xsl:otherwise>
+            </xsl:choose>
+        </div>        
     </xsl:template>
     
     <xsl:template match="content">

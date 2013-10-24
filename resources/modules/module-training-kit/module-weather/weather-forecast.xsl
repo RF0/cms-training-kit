@@ -19,7 +19,7 @@
     </xsl:template>
     
     <xsl:template match="weatherdata">
-        <div id="weather-forecast">
+        <div class="weather-forecast">
             <h2>
                 <xsl:value-of select="concat('Weather forecast for ', location/name)"/>
             </h2>            

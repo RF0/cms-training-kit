@@ -13,7 +13,8 @@
     <xsl:output method="xhtml"/>
     
     <xsl:template match="/">
-        <div id="file-archive">
+        <div class="file-archive">
+            <h1>File archive</h1>
             <div class="column heading name">
                 <span>
                     <xsl:value-of select="portal:localize('file.name')"/>
